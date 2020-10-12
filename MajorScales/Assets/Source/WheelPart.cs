@@ -4,7 +4,14 @@ using Utils;
 
 public class WheelPart : MonoBehaviour
 {
-    public string Key;
+    public Text noteLabel;
+    public string Key
+    {
+        get
+        {
+            return noteLabel.text;
+        }
+    }
     private GameObject onImage;
     private GameObject offImage;
     private GameObject keyIndicator;
@@ -35,5 +42,10 @@ public class WheelPart : MonoBehaviour
     public void SetIsKey(bool isKey)
     {
         keyIndicator.SetActive(isKey);
+    }
+
+    public void SetNoteLabel(string content)
+    {
+        noteLabel.text = content;
     }
 }
