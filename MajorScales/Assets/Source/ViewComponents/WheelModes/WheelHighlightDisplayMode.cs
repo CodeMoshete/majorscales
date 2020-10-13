@@ -3,10 +3,11 @@ using UnityEngine.UI;
 
 public class WheelHighlightDisplayMode : IDisplayMode
 {
-    public List<WheelPart> WheelParts;
-    public List<Text> NoteNumbers;
-    public List<Text> NoteLabels;
-    public Text KeyOfText;
+    private List<WheelPart> WheelParts;
+    private List<Text> NoteNumbers;
+    private List<Text> NoteLabels;
+    private Text KeyOfText;
+    private ChordsDisplayComponent chordsComponent;
 
     public string DisplayName
     {
@@ -20,14 +21,17 @@ public class WheelHighlightDisplayMode : IDisplayMode
         List<WheelPart> wheelParts,
         List<Text> noteNumbers,
         List<Text> noteLabels,
-        Text keyOfText)
+        Text keyOfText,
+        ChordsDisplayComponent chordsComponent)
     {
         WheelParts = wheelParts;
         NoteNumbers = noteNumbers;
         NoteLabels = noteLabels;
         KeyOfText = keyOfText;
+        this.chordsComponent = chordsComponent;
 
         SetKeyIndex(9);
+        chordsComponent.SetKeyIndex(wheelParts[9]);
     }
 
     public void SetKeyIndex(WheelPart key)
@@ -63,5 +67,6 @@ public class WheelHighlightDisplayMode : IDisplayMode
             currentIndex = currentIndex + 1 >= count ? 0 : currentIndex + 1;
         }
         KeyOfText.text = WheelParts[index].Key;
+        chordsComponent.SetKeyIndex(WheelParts[index]);
     }
 }

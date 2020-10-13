@@ -7,7 +7,8 @@ public interface IDisplayMode
         List<WheelPart> wheelParts,
         List<Text> noteNumbers,
         List<Text> noteLabels,
-        Text keyOfText);
+        Text keyOfText,
+        ChordsDisplayComponent chordsComponent);
 
     void SetKeyIndex(WheelPart key);
 

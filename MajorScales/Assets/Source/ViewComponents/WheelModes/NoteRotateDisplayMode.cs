@@ -3,10 +3,11 @@ using UnityEngine.UI;
 
 public class NoteRotateDisplayMode : IDisplayMode
 {
-    public List<WheelPart> WheelParts;
-    public List<Text> NoteNumbers;
-    public List<Text> NoteLabels;
-    public Text KeyOfText;
+    private List<WheelPart> WheelParts;
+    private List<Text> NoteNumbers;
+    private List<Text> NoteLabels;
+    private Text KeyOfText;
+    private ChordsDisplayComponent chordsComponent;
 
     private List<string> previousNoteAssociations;
 
@@ -22,12 +23,14 @@ public class NoteRotateDisplayMode : IDisplayMode
         List<WheelPart> wheelParts,
         List<Text> noteNumbers,
         List<Text> noteLabels,
-        Text keyOfText)
+        Text keyOfText,
+        ChordsDisplayComponent chordsComponent)
     {
         WheelParts = wheelParts;
         NoteNumbers = noteNumbers;
         NoteLabels = noteLabels;
         KeyOfText = keyOfText;
+        this.chordsComponent = chordsComponent;
 
         SetInitialState();
     }
@@ -37,6 +40,7 @@ public class NoteRotateDisplayMode : IDisplayMode
         int index = 0;
         int currentIndex = index;
         int currentNoteIndex = 0;
+        chordsComponent.SetKeyIndex(WheelParts[0]);
         for (int i = 0, count = WheelParts.Count; i < count; ++i)
         {
             bool isActive = Constants.ACTIVE_INDICES.Contains(i);
@@ -77,5 +81,6 @@ public class NoteRotateDisplayMode : IDisplayMode
         }
         previousNoteAssociations = noteNames;
         KeyOfText.text = WheelParts[0].Key;
+        chordsComponent.SetKeyIndex(WheelParts[0]);
     }
 }
