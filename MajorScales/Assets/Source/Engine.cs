@@ -11,10 +11,12 @@ public class Engine : MonoBehaviour
     public Text KeyOfText;
     public Button ToggleModeButton;
     public Text ModeText;
+    public Text ChordsTextField;
 
     private int typeIndex = -1;
     private List<Type> possibleTypes = new List<Type>();
     private IDisplayMode currentDisplayMode;
+    private ChordsDisplayComponent chordsDisplay;
 
     private void Start()
     {
@@ -22,6 +24,7 @@ public class Engine : MonoBehaviour
         possibleTypes.Add(typeof(NoteRotateDisplayMode));
         ToggleDisplayMode();
         ToggleModeButton.onClick.AddListener(ToggleDisplayMode);
+        chordsDisplay = new ChordsDisplayComponent(ChordsTextField, WheelParts);
     }
 
     public void ToggleDisplayMode()
