@@ -69,5 +69,5 @@ public class Constants
         new List<int>(new int[] { 0, 2, 4, 5, 7, 9, 11 });
 
     public static readonly List<string> NOTE_NUMBERS = new List<string>(
-        new string[] { "1", "9", "3", "11", "5", "13", "7" });
+        new string[] { "1", "2/9", "3", "4/11", "5", "6/13", "7" });
 }

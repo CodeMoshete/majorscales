@@ -22,7 +22,7 @@ public class ChordsDisplayComponent
     {
         List<string> chordsList = new List<string>();
         List<string> currentNotes = Constants.NoteStringAssociations[key.Key];
-        int startIndex = currentNotes.IndexOf(key.Key);
+        int startIndex = GetNoteIndex(key.Key);
         List<int> offsetIndices = GetOffsetIndices(startIndex);
         for (int i = 0, count = Constants.ACTIVE_INDICES.Count; i < count; ++i)
         {
@@ -76,6 +76,13 @@ public class ChordsDisplayComponent
             }
         }
         display.text = string.Join("\n", chordsList.ToArray());
+    }
+
+    private int GetNoteIndex(string noteName)
+    {
+        int index = Constants.NOTE_LABELS_SHARP.IndexOf(noteName);
+        index = index < 0 ? Constants.NOTE_LABELS_FLAT.IndexOf(noteName) : index;
+        return index;
     }
 
     private int ComputeIndex(int input)
